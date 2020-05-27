@@ -19,6 +19,14 @@ class Vgg16:
             print(path)
             vgg16_npy_path = path
 
+# https://stackoverflow.com/questions/55890813/how-to-fix-object-arrays-cannot-be-loaded-when-allow-pickle-false-for-imdb-loa
+# in numpy 1.16.1, default value of allow_pickle as True. While in numpy 1.16.2, the default value is False.
+# So meet error: Object arrays cannot be loaded when allow_pickle=False
+# So need add np.load(d.npy, allow_pickle=True)
+# https://github.com/DeepRNN/image_captioning/issues/25
+# Python2 uses ASCII as default, but Python3 uses UTF-8 as default.
+# So meet error: you may need to pass the encoding= option to numpy.load
+# So need add np.load(d.npy, encoding="latin1")
         self.data_dict = np.load(vgg16_npy_path, allow_pickle=True, encoding="latin1").item()
         print("npy file loaded")
 
