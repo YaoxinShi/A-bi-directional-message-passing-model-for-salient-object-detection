@@ -20,3 +20,9 @@ Saliency map of this paper can be downloaded [BaiduYun](https://pan.baidu.com/s/
         title = {A Bi-Directional Message Passing Model for Salient Object Detection},
         booktitle = CVPR,
         year = {2018}}
+
+
+Steps:
+* Download vgg16.npy from https://mega.nz/#!YU1FWJrA!O1ywiCS2IiOlUCtCpI6HTJOMrneN-Qdv3ywQP5poecM, and put to ./
+* Donwload pretrained model from https://pan.baidu.com/s/1ZSUW8YPvLR9mRjZ7_ISVnw, and put to ./model
+* python TestingModel.py

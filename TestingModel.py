@@ -27,7 +27,7 @@ def load_img_list(dataset):
     elif dataset == 'SOC':
         path = '/home/zhanglu/Downloads/SOC6K_Release/ValSet/img_select'
     elif dataset == 'zy':
-        path = '/home/zhanglu/Documents/zengyi_1981_1024'
+        path = './data'
 
 
     imgs = os.listdir(path)
