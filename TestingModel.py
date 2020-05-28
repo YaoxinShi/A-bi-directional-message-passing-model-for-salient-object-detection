@@ -78,6 +78,15 @@ if __name__ == "__main__":
       
                 print("--- %s seconds ---" % (time.time() - start_time))
 
+                print("@@@@@@")
+                print(sal_map.shape)
+                print(sal_map)
+                print("@@@@@@")
+                print(result.shape) # (65536, 2)
+                print(result)
+                print("@@@@@@")
+                print(label_size)
+                print("@@@@@@")
                 result = np.reshape(result, (label_size, label_size, 2))
                 result = result[:, :, 0]
 
