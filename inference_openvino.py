@@ -23,7 +23,7 @@ from openvino.inference_engine import IENetwork, IEPlugin
 
 #######################################################################
 # 1. Run "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
-# 2. python inference_openvino.py -m out.xml -i .\data\apex_540p.jpg -d GPU
+# 2. python inference_openvino.py -m BDMP_FP16.xml -i .\data\forza_540p.jpg -d GPU
 #######################################################################
 
 def build_argparser():
@@ -51,8 +51,8 @@ def build_argparser():
 def main():
     log.basicConfig(format="[ %(levelname)s ] %(message)s", level=log.INFO, stream=sys.stdout)
     args = build_argparser().parse_args()
-    model_xml = "out.xml" #args.model
-    model_bin = "out.bin" #os.path.splitext(model_xml)[0] + ".bin"
+    model_xml = args.model
+    model_bin = os.path.splitext(model_xml)[0] + ".bin"
 
     # Plugin initialization for specified device and load extensions library if specified
     plugin = IEPlugin(device=args.device, plugin_dirs=args.plugin_dir)

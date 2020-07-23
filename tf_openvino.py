@@ -61,7 +61,7 @@ graph_io.write_graph(frozen, './', 'out.pb', as_text=False)
 
 print(">>> convert TF to OpenVINO")
 import os
-os.system('python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\model_optimizer\mo.py" --input_model out.pb')
+os.system('python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\model_optimizer\mo.py" --input_model out.pb --data_type FP16 --model_name BDMP_FP16')
 
 # from "https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Convert_Model_From_TensorFlow.html"
 # we can use MetaGraph directly.
