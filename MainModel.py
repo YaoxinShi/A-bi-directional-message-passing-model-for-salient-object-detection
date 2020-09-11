@@ -1,5 +1,5 @@
-#import tensorflow as tf
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
+#import tensorflow.compat.v1 as tf
 import vgg16
 import cv2
 import numpy as np
@@ -11,7 +11,7 @@ class Model:
     def __init__(self):
         self.vgg = vgg16.Vgg16()
 
-        tf.disable_v2_behavior()
+        #tf.disable_v2_behavior()
         self.input_holder = tf.placeholder(tf.float32, [1, img_size, img_size, 3])
         self.label_holder = tf.placeholder(tf.float32, [label_size*label_size, 2])
         

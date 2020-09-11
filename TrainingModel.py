@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import vgg16
 import MainModel as MM
-#import tensorflow as tf
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
+#import tensorflow.compat.v1 as tf
 import os
 import argparse
 
@@ -23,7 +23,7 @@ def load_training_list():
 
 def train(lr,n_epochs,save_dir,clip_grads = None, load = None, model_files = None):
 
-    tf.disable_v2_behavior()
+    #tf.disable_v2_behavior()
     opt = tf.train.AdamOptimizer(lr)
     with tf.variable_scope(tf.get_variable_scope()):
 
