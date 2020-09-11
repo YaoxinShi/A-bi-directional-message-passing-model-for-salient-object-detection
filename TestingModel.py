@@ -3,7 +3,8 @@ import numpy as np
 import MainModel as MM
 import os
 import sys
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import time
 import vgg16
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
@@ -36,6 +37,7 @@ def load_img_list(dataset):
 
 
 if __name__ == "__main__":
+    tf.disable_v2_behavior()
 
     model = MM.Model()
     

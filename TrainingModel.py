@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 import vgg16
 import MainModel as MM
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import os
 import argparse
 
@@ -22,6 +23,7 @@ def load_training_list():
 
 def train(lr,n_epochs,save_dir,clip_grads = None, load = None, model_files = None):
 
+    tf.disable_v2_behavior()
     opt = tf.train.AdamOptimizer(lr)
     with tf.variable_scope(tf.get_variable_scope()):
 
@@ -70,11 +72,11 @@ def train(lr,n_epochs,save_dir,clip_grads = None, load = None, model_files = Non
             whole_acc += acc
             count = count + 1
             if count % 200 == 0:
-                print "Loss of %d images: %f, Accuracy: %f" % (count, (whole_loss/count), (whole_acc/count))
+                print("Loss of %d images: %f, Accuracy: %f" % (count, (whole_loss/count), (whole_acc/count)))
         save_dir = save_dir + '/model.ckpt'
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
-        print "Epoch %d: %f" % (i, (whole_loss/len(train_list)))
+        print("Epoch %d: %f" % (i, (whole_loss/len(train_list))))
         saver.save(sess, save_dir, global_step=i)
 
 if __name__ == "__main__":
