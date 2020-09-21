@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import vgg16
 import MainModel as MM
-import tensorflow as tf
-#import tensorflow.compat.v1 as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import os
 import argparse
 
@@ -23,7 +23,7 @@ def load_training_list():
 
 def train(lr,n_epochs,save_dir,clip_grads = None, load = None, model_files = None):
 
-    #tf.disable_v2_behavior()
+    tf.disable_v2_behavior()
     opt = tf.train.AdamOptimizer(lr)
     with tf.variable_scope(tf.get_variable_scope()):
 
@@ -50,12 +50,13 @@ def train(lr,n_epochs,save_dir,clip_grads = None, load = None, model_files = Non
     label_size = MM.label_size
 
     for i in range(1,n_epochs):
+        print("epoch:", i)
         whole_loss = 0.0
         whole_acc = 0.0
         count = 0
 
         for f_img, f_label in zip(train_list, label_list):
-
+            print("image:", f_img)
             img = cv2.imread(f_img).astype(np.float32)
             img = cv2.resize(img, (img_size, img_size)) - vgg16.VGG_MEAN
             img = img.reshape((1, img_size, img_size, 3))
@@ -92,9 +93,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     os.environ['CUDA_VISIBLE_DEVICES'] = args.g
-    train(lr = args.l,
-          model_files=args.m,
-          n_epochs=args.e,
-          save_dir=args.s,
-          clip_grads=args.c,
-          load=args.a)
+    print("@@@@@@")
+    print("-g", args.g)
+    print("-l", args.l)
+    print("-m", args.m)
+    print("-e", args.e)
+    print("-s", args.s)
+    print("-c", args.c)
+    print("-a", args.a)
+    train(lr = args.l, model_files=args.m, n_epochs=args.e, save_dir=args.s, clip_grads=args.c, load=args.a)

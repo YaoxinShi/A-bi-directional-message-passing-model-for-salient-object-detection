@@ -2,8 +2,8 @@ import os
 import sys
 
 import numpy as np
-import tensorflow as tf
-#import tensorflow.compat.v1 as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 VGG_MEAN = [103.939, 116.779, 123.68]
 
@@ -62,7 +62,7 @@ class Vgg16:
                               padding='SAME', name=name)
 
     def _conv_layer(self, bottom, name):
-        #tf.disable_v2_behavior()
+        tf.disable_v2_behavior()
         with tf.variable_scope(name) as scope:
             filt = self.get_conv_filter(name)
             conv = tf.nn.conv2d(bottom, filt, [1, 1, 1, 1], padding='SAME')
